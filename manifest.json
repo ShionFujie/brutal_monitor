@@ -11,7 +11,7 @@
   },
   "permissions": [],
   "background": {
-    "scripts": ["js/background.js", "js/constants/port_names.js"]
+    "page": "html/background.html"
   },
   "content_scripts": [
     {
