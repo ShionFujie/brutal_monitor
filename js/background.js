@@ -1,5 +1,3 @@
-const Rx = rxjs;
-
 fromPortMessages(PORT_NAME_USER_ACTIVITY).subscribe(onDetectUserActivity);
 
 function onDetectUserActivity({ datetime, type, url }) {
