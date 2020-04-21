@@ -1,4 +1,3 @@
-console.log('loading content script')
 var userActivityPort = chrome.runtime.connect({
   name: PORT_NAME_USER_ACTIVITY
 })
