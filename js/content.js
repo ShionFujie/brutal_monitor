@@ -13,7 +13,7 @@ window.addEventListener("scroll", reportUserActivity);
 function reportUserActivity() {
   if (userActivityPort != null)
     userActivityPort.postMessage({
-      datetime: Date.now(),
+      datetime: new Date(),
       url: location.href
     });
 }
