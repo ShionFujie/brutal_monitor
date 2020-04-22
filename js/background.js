@@ -15,6 +15,6 @@ function getFirebase() {
   return firebase;
 }
 
-function onDetectUserActivity({ datetime, type, url }) {
-  console.log(`${datetime.toString()}:[${type}] ${url}`);
+function onDetectUserActivity({ datetime, url }) {
+  console.log(`${datetime.toString()}: ${url}`);
 }

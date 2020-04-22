@@ -4,22 +4,15 @@ var userActivityPort = chrome.runtime.connect({
 userActivityPort.onDisconnect.addListener(() => {
   userActivityPort = null;
 });
-window.addEventListener("mousemove", () => {
-  reportUserActivity("MOUSE_MOVE");
-});
+window.addEventListener("mousemove", reportUserActivity);
 
-window.addEventListener("keydown", () => {
-  reportUserActivity("KEY_DOWN");
-});
+window.addEventListener("keydown", reportUserActivity);
 
-window.addEventListener("scroll", () => {
-  reportUserActivity("SCROLL");
-});
+window.addEventListener("scroll", reportUserActivity);
 
-function reportUserActivity(type) {
+function reportUserActivity() {
   if (userActivityPort != null)
     userActivityPort.postMessage({
-      type,
       datetime: Date.now(),
       url: location.href
     });
