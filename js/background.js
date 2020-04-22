@@ -1,10 +1,14 @@
 const sampleTime = rxjs.operators.sampleTime;
+const flatMap = rxjs.operators.flatMap;
 
 const userActivity = UserActivityStore(getFirebase());
 
 fromPortMessages(PORT_NAME_USER_ACTIVITY)
-  .pipe(sampleTime(60000))
-  .subscribe(onDetectUserActivity);
+  .pipe(
+    sampleTime(60000),
+    flatMap(userActivity.addActivity)
+  )
+  .subscribe(onUserActivityAdded);
 
 function getFirebase() {
   firebase.initializeApp({
@@ -15,6 +19,7 @@ function getFirebase() {
   return firebase;
 }
 
-function onDetectUserActivity({ datetime, url }) {
-  console.log(`${datetime.toString()}: ${url}`);
+function onUserActivityAdded({ complete, reason }) {
+  const msg = complete ? "[SUCCESS] User Activity Added" : `[ERROR] ${reason}`;
+  console.log(msg);
 }
